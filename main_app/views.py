@@ -14,7 +14,7 @@ from .forms import FuelingForm
 
 class CarCreate(CreateView):
   model = Car
-  fields = '__all__'
+  fields = ['make', 'description', 'year']
   success_url = '/cars/'
 
 class CarUpdate(UpdateView):
@@ -67,6 +67,7 @@ def add_fueling(request, car_id):
   return redirect('detail', car_id=car_id)
 
 def assoc_driver(request, car_id, driver_id):
+  print(car_id, driver_id)
   Car.objects.get(id=car_id).drivers.add(driver_id)
   return redirect('detail', car_id=car_id)
 
